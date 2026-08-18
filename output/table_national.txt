@@ -1,0 +1,12 @@
+                 spec    coef     se      p     N  counties
+      (1) Full sample -0.1212 0.0231 0.0000 16868      1432
+         (2) Balanced -0.1181 0.0241 0.0000 16032      1336
+       (3) Donor pool -0.1768 0.0873 0.0430  1608       134
+    (4) Donor, lagged -0.1733 0.0858 0.0435  1474       134
+(5) Donor + HI inter. -0.1774 0.0874 0.0425  1608       134
+    (6) DV same-state -0.0237 0.0498 0.6342  1608       134
+       (7) DV all out -0.0584 0.0435 0.1789  1608       134
+       (8) DV in-rate -0.0348 0.0579 0.5477  1608       134
+
+Spec 5 mainland slope -0.1774, HI differential 0.0529
+Spec 3 state-clustered p: 0.054

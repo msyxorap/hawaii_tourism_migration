@@ -1,0 +1,10 @@
+                 spec    coef  hc1_se  hc1_p  boot_p  n
+         (1) Baseline  0.2827  0.1064 0.0079  0.4745 96
+   (2) Lagged tourism  0.3931  0.0919 0.0000  0.1806 92
+(3) Pre-COVID (99-19)  0.5237  0.1952 0.0073  0.1543 84
+ (4) WLS (hh weights)  0.3430  0.0908 0.0002  0.2824 96
+    (5) County trends -0.1875  0.1118 0.0937  0.1860 96
+  (6) DV: all out-mig -0.0271  0.0718 0.7063  0.5856 96
+ (7) DV: IN-migration  0.1574  0.1898 0.4069  0.4684 96
+
+Driscoll-Kraay (main): coef 0.2827, SE 0.1433, p 0.053

@@ -1,0 +1,153 @@
+Cluster-by-county SEs
+============================================================
+
+--- Pooled ---
+                              OLS Regression Results                              
+==================================================================================
+Dep. Variable:     ln_out_rate_diff_state   R-squared:                       0.630
+Model:                                OLS   Adj. R-squared:                  0.626
+Method:                     Least Squares   F-statistic:                     24.62
+Date:                    Mon, 17 Aug 2026   Prob (F-statistic):           3.10e-06
+Time:                            00:08:33   Log-Likelihood:                 59.865
+No. Observations:                      96   AIC:                            -115.7
+Df Residuals:                          94   BIC:                            -110.6
+Df Model:                               1                                         
+Covariance Type:                  cluster                                         
+===================================================================================
+                      coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+Intercept          -7.8892      0.900     -8.765      0.000      -9.653      -6.125
+ln_visitor_days     0.2799      0.056      4.962      0.000       0.169       0.390
+==============================================================================
+Omnibus:                       12.125   Durbin-Watson:                   1.340
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               14.844
+Skew:                           0.657   Prob(JB):                     0.000598
+Kurtosis:                       4.410   Cond. No.                         451.
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)
+
+--- Controls ---
+                              OLS Regression Results                              
+==================================================================================
+Dep. Variable:     ln_out_rate_diff_state   R-squared:                       0.674
+Model:                                OLS   Adj. R-squared:                  0.656
+Method:                     Least Squares   F-statistic:                 1.163e+12
+Date:                    Mon, 17 Aug 2026   Prob (F-statistic):               0.00
+Time:                            00:08:33   Log-Likelihood:                 66.007
+No. Observations:                      96   AIC:                            -120.0
+Df Residuals:                          90   BIC:                            -104.6
+Df Model:                               5                                         
+Covariance Type:                  cluster                                         
+======================================================================================
+                         coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept             -9.0970      0.890    -10.222      0.000     -10.841      -7.353
+C(era)[T.post2022]    -0.0955      0.026     -3.719      0.000      -0.146      -0.045
+C(era)[T.pre2011]      0.0260      0.021      1.213      0.225      -0.016       0.068
+ln_visitor_days        0.3145      0.062      5.068      0.000       0.193       0.436
+unemployment_rate      1.3927      0.469      2.969      0.003       0.473       2.312
+ln_hpi                 0.1060      0.037      2.840      0.005       0.033       0.179
+==============================================================================
+Omnibus:                        4.184   Durbin-Watson:                   1.197
+Prob(Omnibus):                  0.123   Jarque-Bera (JB):                4.283
+Skew:                           0.227   Prob(JB):                        0.117
+Kurtosis:                       3.930   Cond. No.                         865.
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)
+
+--- County FE ---
+                              OLS Regression Results                              
+==================================================================================
+Dep. Variable:     ln_out_rate_diff_state   R-squared:                       0.818
+Model:                                OLS   Adj. R-squared:                  0.801
+Method:                     Least Squares   F-statistic:                     9.307
+Date:                    Mon, 17 Aug 2026   Prob (F-statistic):           3.47e-09
+Time:                            00:08:33   Log-Likelihood:                 93.972
+No. Observations:                      96   AIC:                            -169.9
+Df Residuals:                          87   BIC:                            -146.9
+Df Model:                               8                                         
+Covariance Type:                  cluster                                         
+================================================================================================
+                                   coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+Intercept                       -3.0236      0.814     -3.714      0.000      -4.619      -1.428
+C(era)[T.post2022]              -0.0730      0.014     -5.333      0.000      -0.100      -0.046
+C(era)[T.pre2011]               -0.0292      0.025     -1.173      0.241      -0.078       0.020
+C(county)[T.Honolulu County]     0.5090      0.067      7.544      0.000       0.377       0.641
+C(county)[T.Kauai County]       -0.0749      0.021     -3.638      0.000      -0.115      -0.035
+C(county)[T.Maui County]         0.1350      0.033      4.119      0.000       0.071       0.199
+ln_visitor_days                 -0.0668      0.059     -1.131      0.258      -0.183       0.049
+unemployment_rate               -0.7638      0.274     -2.793      0.005      -1.300      -0.228
+ln_hpi                           0.1440      0.043      3.343      0.001       0.060       0.228
+==============================================================================
+Omnibus:                       12.546   Durbin-Watson:                   1.629
+Prob(Omnibus):                  0.002   Jarque-Bera (JB):               40.858
+Skew:                           0.013   Prob(JB):                     1.34e-09
+Kurtosis:                       6.196   Cond. No.                     2.50e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)
+[2] The condition number is large, 2.5e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+--- County + Year FE ---
+                              OLS Regression Results                              
+==================================================================================
+Dep. Variable:     ln_out_rate_diff_state   R-squared:                       0.956
+Model:                                OLS   Adj. R-squared:                  0.936
+Method:                     Least Squares   F-statistic:                 5.173e+12
+Date:                    Mon, 17 Aug 2026   Prob (F-statistic):               0.00
+Time:                            00:08:33   Log-Likelihood:                 161.63
+No. Observations:                      96   AIC:                            -263.3
+Df Residuals:                          66   BIC:                            -186.3
+Df Model:                              29                                         
+Covariance Type:                  cluster                                         
+================================================================================================
+                                   coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+Intercept                       -8.5393      2.212     -3.860      0.000     -12.875      -4.203
+C(county)[T.Honolulu County]     0.1125      0.175      0.644      0.519      -0.230       0.455
+C(county)[T.Kauai County]        0.0221      0.054      0.413      0.680      -0.083       0.127
+C(county)[T.Maui County]        -0.0742      0.086     -0.860      0.390      -0.243       0.095
+C(year_f)[T.2000]               -0.0546      0.043     -1.275      0.202      -0.139       0.029
+C(year_f)[T.2001]               -0.0405      0.068     -0.596      0.551      -0.173       0.093
+C(year_f)[T.2002]               -0.1105      0.044     -2.518      0.012      -0.197      -0.024
+C(year_f)[T.2003]               -0.1441      0.085     -1.695      0.090      -0.311       0.022
+C(year_f)[T.2004]               -0.1020      0.130     -0.783      0.433      -0.357       0.153
+C(year_f)[T.2005]               -0.0723      0.148     -0.487      0.626      -0.363       0.219
+C(year_f)[T.2006]               -0.0688      0.175     -0.393      0.694      -0.412       0.274
+C(year_f)[T.2007]               -0.1218      0.207     -0.589      0.556      -0.527       0.283
+C(year_f)[T.2008]               -0.0722      0.183     -0.395      0.693      -0.431       0.286
+C(year_f)[T.2009]               -0.1576      0.178     -0.884      0.377      -0.507       0.192
+C(year_f)[T.2010]               -0.1600      0.148     -1.079      0.280      -0.450       0.131
+C(year_f)[T.2011]               -0.1421      0.153     -0.931      0.352      -0.441       0.157
+C(year_f)[T.2012]               -0.1312      0.135     -0.972      0.331      -0.396       0.133
+C(year_f)[T.2013]               -0.1493      0.156     -0.957      0.338      -0.455       0.156
+C(year_f)[T.2014]               -0.3663      0.191     -1.918      0.055      -0.741       0.008
+C(year_f)[T.2015]               -0.1396      0.196     -0.713      0.476      -0.523       0.244
+C(year_f)[T.2016]                0.1090      0.187      0.583      0.560      -0.257       0.475
+C(year_f)[T.2017]               -0.1254      0.223     -0.561      0.575      -0.563       0.313
+C(year_f)[T.2018]               -0.1646      0.248     -0.665      0.506      -0.650       0.321
+C(year_f)[T.2019]               -0.1850      0.229     -0.809      0.418      -0.633       0.263
+C(year_f)[T.2020]                0.1519      0.267      0.570      0.569      -0.371       0.675
+C(year_f)[T.2021]               -0.0960      0.259     -0.370      0.711      -0.604       0.412
+C(year_f)[T.2022]               -0.2350      0.277     -0.850      0.396      -0.777       0.307
+ln_visitor_days                  0.2827      0.147      1.925      0.054      -0.005       0.571
+unemployment_rate                0.2470      0.499      0.495      0.621      -0.732       1.226
+ln_hpi                           0.1295      0.201      0.644      0.520      -0.265       0.524
+==============================================================================
+Omnibus:                        0.079   Durbin-Watson:                   1.426
+Prob(Omnibus):                  0.961   Jarque-Bera (JB):                0.243
+Skew:                          -0.032   Prob(JB):                        0.886
+Kurtosis:                       2.762   Cond. No.                     6.74e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)
+[2] The condition number is large, 6.74e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.

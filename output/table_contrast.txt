@@ -1,0 +1,46 @@
+#lemme seee it
+
+A. SHARE OF WITHIN-US OUT-MOVES THAT CROSS A STATE LINE
+   (contrast sample = mainland donor pool + Hawaii counties with
+   >=11 full years; 2011-2022 mean)
+   Note: raw cross-state shares also reflect state geography -
+   counties near borders of small states (Clark NV, Teton WY) rank
+   high mechanically. Hawaii's position is the conservative reading:
+   it ranks near the top DESPITE having no state border at all.
+
+Top 12 of 134:
+ fips                     county_name  diff_share_of_us_moves
+32003            Clark County, Nevada                   0.951
+15003         Honolulu County, Hawaii                   0.940
+56039           Teton County, Wyoming                   0.857
+37133   Onslow County, North Carolina                   0.796
+50025         Windham County, Vermont                   0.790
+15009   Maui + Kalawao County, Hawaii                   0.785
+47125    Montgomery County, Tennessee                   0.780
+15001           Hawaii County, Hawaii                   0.770
+45013 Beaufort County, South Carolina                   0.767
+19155      Pottawattamie County, Iowa                   0.758
+10005         Sussex County, Delaware                   0.758
+32031           Washoe County, Nevada                   0.749
+
+Hawaii counties:            0.770 - 0.940
+Mainland donor mean:        0.478
+Mainland donor p10 - p90:   0.254 - 0.732
+Hawaii ranks (of 136): [2, 6, 8]
+
+
+B. HOUSING PRESSURE AND EXIT GEOGRAPHY (donor pool, county+year FE)
+   coefficient on ln HPI (and Hawaii differential) by exit margin
+
+DV                             ln_hpi      p  x Hawaii      p
+same-state exits                0.044  0.312    -0.412  0.000
+different-state exits           0.135  0.040     0.094  0.034
+
+
+C. HAWAII: VISITOR-DAY VOLUME AND EXIT MARGINS (1999-2022, county+year FE,
+   county-clustered SEs; 4 clusters - see ch. inference discussion)
+
+DV                           elasticity      p
+different-state exits             0.283  0.054
+same-state exits                 -0.774  0.001
+all exits                        -0.027  0.651

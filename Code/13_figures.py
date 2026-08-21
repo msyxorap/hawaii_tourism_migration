@@ -81,27 +81,68 @@ fig.savefig(FIGDIR / "fig1_synthetic_maui.png")
 plt.close(fig)
 
 # ------------------------------------------- fig 2: Hawaii series ----
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.6, 6.2), sharex=True,
-                               gridspec_kw={"hspace": 0.14})
-events = [(2001, 2002, "9/11"), (2008, 2010, "GFC"), (2020, 2021.6, "COVID")]
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(7.8, 6.4), sharex=True,
+                               gridspec_kw={"hspace": 0.16})
+events = [(2001, 2002, "9/11"), (2008, 2010, "GFC"),
+          (2020, 2021.6, "COVID")]
 for ax in (ax1, ax2):
     for a, b, _ in events:
-        ax.axvspan(a, b, color=BAND, alpha=0.45, zorder=0)
+        ax.axvspan(a, b, color=BAND, alpha=0.35, zorder=0)
+
+def spread(targets, min_gap):
+    """Nudge label y-positions apart until no pair overlaps."""
+    order = sorted(range(len(targets)), key=lambda i: targets[i])
+    ys = [targets[i] for i in order]
+    for _ in range(50):
+        moved = False
+        for i in range(1, len(ys)):
+            if ys[i] - ys[i - 1] < min_gap:
+                ys[i - 1] -= (min_gap - (ys[i] - ys[i - 1])) / 2
+                ys[i] += (min_gap - (ys[i] - ys[i - 1])) / 2
+                moved = True
+        if not moved:
+            break
+    out = [0.0] * len(targets)
+    for pos, i in enumerate(order):
+        out[i] = ys[pos]
+    return out
+
+ends1, ends2, cols, labs = [], [], [], []
 for c, col in HI_COLORS.items():
     d = hi[hi.county == c].sort_values("year")
     v = d.dropna(subset=["visitor_days"])
     base = v[v.year == 1999].visitor_days.iloc[0]
-    ax1.plot(v.year, 100 * v.visitor_days / base, color=col, lw=2, zorder=3)
-    endlabel(ax1, 2024, (100 * v.visitor_days / base).iloc[-1],
-             c.replace(" County", ""), col, dx=0.25, fs=9)
-    ax2.plot(d.year, 100 * d.out_rate_diff_state, color=col, lw=2, zorder=3)
+    s1 = 100 * v.visitor_days / base
+    ax1.plot(v.year, s1, color=col, lw=2.2, zorder=3,
+             solid_capstyle="round")
+    ax1.plot(v.year.iloc[-1], s1.iloc[-1], "o", color=col, ms=5, zorder=4)
+    s2 = 100 * d.out_rate_diff_state
+    ax2.plot(d.year, s2, color=col, lw=2.2, zorder=3,
+             solid_capstyle="round")
+    ax2.plot(d.year.iloc[-1], s2.iloc[-1], "o", color=col, ms=5, zorder=4)
+    ends1.append(s1.iloc[-1]); ends2.append(s2.iloc[-1])
+    cols.append(col); labs.append(c.replace(" County", ""))
+for ys, ax, gap in [(spread(ends1, 9), ax1, 9),
+                    (spread(ends2, 0.32), ax2, 0.32)]:
+    for y, col, lab in zip(ys, cols, labs):
+        ax.annotate(lab, (2022.4, y), color=col, fontsize=9.5,
+                    fontweight="semibold", va="center")
 for a, _, lab in events:
-    ax1.text(a + 0.15, 33, lab, color="#8a6d1d", fontsize=8.5,
-             style="italic")
+    ax1.text((a), 174, lab, color="#8a6d1d", fontsize=8.5,
+             style="italic", ha="left")
 ax1.axhline(100, color=GRAY, lw=0.7, ls=":")
+ax1.text(1990, 103, "1999 level", color=GRAY, fontsize=8)
+ax1.annotate("\u221256% in 2020", xy=(2020, 46), xytext=(2013.6, 60),
+             fontsize=9, color="#333333",
+             arrowprops=dict(arrowstyle="-", color=GRAY, lw=0.8))
 ax1.set_ylabel("Visitor days (1999 = 100)")
-ax1.set_xlim(1989, 2028)
-ax1.set_title("Tourism volume and out-of-state migration in Hawaii")
+ax1.set_ylim(38, 180)
+ax1.set_xlim(1989, 2027)
+ax1.set_title("Tourism volume and out-of-state migration in Hawai\u02bbi")
+ax1.text(0.01, 0.94, "A. Visitor volume", transform=ax1.transAxes,
+         fontsize=10, fontweight="semibold", color="#333333")
+ax2.text(0.01, 0.94, "B. Out-of-state exit rate", transform=ax2.transAxes,
+         fontsize=10, fontweight="semibold", color="#333333")
 ax2.set_ylabel("Out-of-state exit rate (%)")
 ax2.set_xlabel("Year")
 fig.savefig(FIGDIR / "fig2_hawaii_series.png")
